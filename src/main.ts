@@ -3,6 +3,7 @@ import { Store } from './Store.service';
 import { UserUseCases } from './domain/User.useCases';
 import './style.css';
 
+// Register the providers and use cases
 Store.services().provide('userProvider', new UserProviderJsonPlaceHolder());
 Store.services().provide('userUseCases', new UserUseCases());
 
