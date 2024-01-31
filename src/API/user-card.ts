@@ -8,18 +8,49 @@ export class UserCard extends HTMLElement {
   }
 
   static styles = String.raw`
-            <style>
-                .user-card {
-                    padding: 1rem;
-                    border: 1px solid #eee;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-                .user-card:hover {
-                    color: #242424;
-                    background-color: #eee;
-                }
-            </style>
+      <style>
+        .user-card {
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .user-card .content {
+          white-space: nowrap;
+            overflow: ellipsis;
+        }
+
+        .user-card:hover {
+            background-color: #2980b9;
+            color: orange;
+        }
+
+        .user-card h2 {
+            margin-top: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .user-card p {
+            margin: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .user-card .company {
+            font-style: italic;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
   `;
 
   static get observedAttributes() {
@@ -56,10 +87,12 @@ export class UserCard extends HTMLElement {
     this.shadowRoot.innerHTML = String.raw`
             ${UserCard.styles}
             <div class="user-card">
+              <div class="content">
                 <h2>${this.user.name}</h2>
                 <p>${this.user.email}</p>
                 <p>${this.user.phone}</p>
-                <p>${this.user.company.name}</p>
+                <p class="company">${this.user.company.name}</p>
+                </div>
             </div>
         `;
   }

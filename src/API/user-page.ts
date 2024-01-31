@@ -52,15 +52,42 @@ export class UserPage extends HTMLElement {
     this.shadowRoot.innerHTML = `
         <style>
         .user-page {
+          width: 100%;
             display: flex;
             flex-direction: row;
             gap: 1rem;
         }
+        .left {
+            width: 70%;
+        }
+        .right {
+            width: 30%;
+        }
+        @media (max-width: 1250px) {
+          .left {
+              width: 50%;
+          }
+          .right {
+              width: 50%;
+          }
+        }
+        @media (max-width: 768px) {
+          .left {
+              width: 40%;
+          }
+          .right {
+              width: 60%;
+          }
+        }
         </style>
         <div class="user-page">
+          <div class="left">
+        
             <user-list users='${JSON.stringify(
               this.users.map((user) => user.toJSON)
             )}'></user-list>
+          </div>
+          <div class="right">
             ${
               this.selectedUser
                 ? `
@@ -70,7 +97,8 @@ export class UserPage extends HTMLElement {
             `
                 : ""
             }
-            </div>
+          </div>
+        </div>
         `;
   }
 }

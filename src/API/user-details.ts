@@ -32,8 +32,8 @@ export class UserDetails extends HTMLElement {
                         padding: 1rem;
                         border: 1px solid black;
                         border-radius: 5px;
-                        background-color: #eee;
-                        color: black;
+                        background-color: #5ab9e2;
+                        color: #fff;
                         width: 300px;
                     }
                 </style>

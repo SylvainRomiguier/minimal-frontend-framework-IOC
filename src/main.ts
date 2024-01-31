@@ -8,11 +8,11 @@ Store.services().provide('userProvider', new UserProviderJsonPlaceHolder());
 Store.services().provide('userUseCases', new UserUseCases());
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div class="container">
+  <div class="app-container">
     <div class="top-bar">
     <h1>Back to Basics : a minimal frontend framework</h1>
     <h2>Dependency Injection and reactive Web Components in Typescript</h2>
-      <app-switch is-on="false">In Memory provider</app-switch>
+    <app-switch>In Memory Provider</app-switch>
     </div>
     <div class="content">
       <user-page></user-page>
