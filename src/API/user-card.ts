@@ -27,7 +27,7 @@ export class UserCard extends HTMLElement {
 
         .user-card:hover {
             background-color: #2980b9;
-            color: orange;
+            color: green;
         }
 
         .user-card h2 {
