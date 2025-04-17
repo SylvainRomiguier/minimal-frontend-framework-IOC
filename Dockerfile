@@ -1,7 +1,7 @@
-FROM node:21-alpine3.18 as build
+FROM node:slim AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
 COPY . .
 RUN npm run build
 
