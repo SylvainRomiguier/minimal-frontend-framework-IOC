@@ -1,0 +1,11 @@
+version: "3.5"
+services:
+  client:
+     build: .
+     restart: unless-stopped
+     ports:
+      - "80:80"
+     networks:
+      - app-network
+networks:
+   app-network:
