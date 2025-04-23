@@ -47,6 +47,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.minimal-frontend.rule=Host(`minimal-frontend.rythmik.fr`)"
       - "traefik.http.routers.minimal-frontend.entrypoints=websecure"
+      - "traefik.http.services.minimal-frontend.loadbalancer.server.port=8080"
       - "traefik.http.routers.minimal-frontend.tls.certresolver=myresolver"
       - "com.centurylinklabs.watchtower.enable=true"
       - "com.centurylinklabs.watchtower.container_name=minimal-frontend"
