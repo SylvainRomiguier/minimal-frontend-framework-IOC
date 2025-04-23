@@ -1,11 +1,27 @@
-version: "3.5"
 services:
-  client:
-     build: .
-     restart: unless-stopped
-     ports:
+  reverse-proxy:
+    image: traefik:v3.1
+    container_name: reverse-proxy
+    restart: unless-stopped
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+    ports:
+      # http
       - "80:80"
-     networks:
+      # web ui
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - app-network
+  minimal-frontend:
+    image: ghcr.io/sylvainromiguier/minimal-frontend-framework-ioc:master
+    container_name: minimal-frontend
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
       - app-network
 networks:
-   app-network:
+  app-network:
