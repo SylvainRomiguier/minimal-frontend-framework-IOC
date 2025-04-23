@@ -1,4 +1,16 @@
 services:
+  watchtower:
+    image: containrrr/watchtower
+    command:
+      - "--label-enable"
+      - "--interval=30"
+      - "--rolling-restart"
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - app-network
   reverse-proxy:
     image: traefik:v3.1
     container_name: reverse-proxy
@@ -36,12 +48,14 @@ services:
       - "traefik.http.routers.minimal-frontend.rule=Host(`minimal-frontend.rythmik.fr`)"
       - "traefik.http.routers.minimal-frontend.entrypoints=websecure"
       - "traefik.http.routers.minimal-frontend.tls.certresolver=myresolver"
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.container_name=minimal-frontend"
     container_name: minimal-frontend
     restart: unless-stopped
     networks:
       - app-network
 volumes:
-   letsencrypt:
-      driver: local
+  letsencrypt:
+    driver: local
 networks:
   app-network:
