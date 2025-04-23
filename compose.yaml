@@ -12,11 +12,11 @@ services:
       - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--entrypoints.websecure.http.tls=true"
-      - "--entrypoints.websecure.http.tls.certresolver=default"
-      - "--certificatesresolvers.default.acme.httpchallenge=true"
-      - "--certificatesresolvers.default.acme.httpchallenge.entrypoint=web"
-      - "--certificatesresolvers.default.acme.email=ubuntu@rythmik.fr"
-      - "--certificatesresolvers.default.acme.storage=/letsencrypt/acme.json"
+      - "--entrypoints.websecure.http.tls.certresolver=myresolver"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=sylvain.romiguier@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
       # http
       - "80:80"
@@ -33,11 +33,9 @@ services:
     image: ghcr.io/sylvainromiguier/minimal-frontend-framework-ioc:master
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.minimal-frontend.entrypoints=websecure"
-      - "traefik.http.routers.minimal-frontend.tls.certresolver=default"
-      - "traefik.http.routers.minimal-frontend.tls=true"
-      - "traefik.http.routers.minimal-frontend.tls.domains[0].main=rythmik.fr"
       - "traefik.http.routers.minimal-frontend.rule=Host(`minimal-frontend.rythmik.fr`)"
+      - "traefik.http.routers.minimal-frontend.entrypoints=websecure"
+      - "traefik.http.routers.minimal-frontend.tls.certresolver=myresolver"
     container_name: minimal-frontend
     restart: unless-stopped
     networks:
