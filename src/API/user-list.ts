@@ -47,8 +47,7 @@ export class UserList extends HTMLElement {
 
   render() {
     if(!this.shadowRoot) { return }
-    let width = this.users.length === 1 ? "100%" : "calc(33.333% - 20px)";
-    width = this.users.length === 2 ? "calc(50% - 20px)" : width;
+    const width = this.users.length === 1 ? "100%" : "calc(50% - 20px)";
 
     this.shadowRoot.innerHTML = `
             <style>

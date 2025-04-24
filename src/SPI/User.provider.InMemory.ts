@@ -7,7 +7,7 @@ export class UserInMemoryProvider implements IUserProvider {
     this.users = [
       new User({
         id: 1,
-        name: "In Memory : Sylvain Romiguier",
+        name: "Sylvain Romiguier",
         username: "Sylvain",
         email: "sylvain.romiguier@gmail.com",
         address: {
